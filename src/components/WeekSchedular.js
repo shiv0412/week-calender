@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "react-week-calendar/src/style.css";
 /*custom imports*/
 import ScheduleEventForm from "./ScheduleEventForm";
-import RangeDisplay from "./RangeDisplay";
+import DropdownAndNavigation from "./DropdownAndNavigation";
 import EventDisplay from "./EventDisplay";
 
 /*styled-components*/
@@ -130,9 +130,11 @@ class WeekSchedluar extends PureComponent {
       <>
         <HeaderContainer>
           <Title>Timeline</Title>
-          <RangeDisplay
+          <DropdownAndNavigation
             weekStartDate={this.state.weekStartDate.format("DD  - ").toString()}
-            weekEndDate={this.state.weekEndDate.format("DD MMMM, yy").toString()}
+            weekEndDate={this.state.weekEndDate
+              .format("DD MMMM, yy")
+              .toString()}
             prevWeekSelector={this.goToPrevWeek}
             nextWeekSelector={this.goToNextWeek}
           />

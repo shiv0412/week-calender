@@ -9,24 +9,27 @@ const DateRangeContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-const DateTitle = styled.h4`
+const Date = styled.h4`
   font-family: arial;
   color: #85929e;
   padding-right: 3.5%;
   font-weight: 13px;
-  padding-top:5px;
+  padding-top: 5px;
 `;
 
-const RangeDisplay = (props) => {
+const DropdownAndNavigation = (props) => {
   return (
     <>
       <DateRangeContainer>
         <Dropdown />
-        <DateTitle>{props.weekStartDate + props.weekEndDate}</DateTitle>
-        <Button prevWeekSelector={props.prevWeekSelector} nextWeekSelector={props.nextWeekSelector} />
+        <Date>{props.weekStartDate + props.weekEndDate}</Date>
+        <Button
+          prevWeekSelector={props.prevWeekSelector}
+          nextWeekSelector={props.nextWeekSelector}
+        />
       </DateRangeContainer>
     </>
   );
 };
 
-export default RangeDisplay;
+export default DropdownAndNavigation;

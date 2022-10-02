@@ -13,7 +13,6 @@ const SideBar = styled.div`
   margin-botton: 5vh;
   transition: width 2s ease;
 `;
-
 const Label = styled.div`
   padding: 20px 0 10px 0;
   font-family: arial;
@@ -31,20 +30,17 @@ const FormikField = styled(Field)`
   color: #808b96;
   font-weight: bold;
 `;
-
 const FormTitle = styled.h3`
   text-align: center;
   font-family: arial;
   color: #808b96;
   padding-top: 15px;
 `;
-
 const FormContainer = styled.div`
   margin: auto;
   width: 60%;
   padding-top: 10%;
 `;
-
 const Button = styled.button`
   margin: 10% 0 0 35%;
   padding: 10px 20px;
@@ -57,13 +53,11 @@ const Button = styled.button`
     cursor: pointer;
   }
 `;
-
 const TimeFieldContainer = styled.div`
   display: flex;
   justifycontent: space-between;
   width: 100%;
 `;
-
 const FormikFieldTime = styled(Field)`
   padding: 15px 5px;
   outline: none;
@@ -74,25 +68,20 @@ const FormikFieldTime = styled(Field)`
   font-size: 12px;
   color: #808b96;
   font-weight: bold;
-
   ::placeholder {
     color: #abb2b9;
     opacity: 1; /* Firefox */
   }
-
   :-ms-input-placeholder {
     color: #abb2b9;
   }
-
   ::-ms-input-placeholder {
     color: #abb2b9;
   }
-
   :nth-child(odd) {
     margin: 0px;
   }
 `;
-
 const CancelButton = styled.button`
   margin: 10% 0 0 35%;
   padding: 10px 20px;
