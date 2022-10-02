@@ -31,7 +31,7 @@ padding-top:15px;
 padding-left:15px;
 `
 
-const EventComponent = (props) => {
+const EventDisplay = (props) => {
   const eventColor = getMyEventColor(props.start.format("hh").toString());
   return (
     <>
@@ -52,9 +52,9 @@ const EventComponent = (props) => {
   );
 };
 
-EventComponent.propTypes = {
+EventDisplay.propTypes = {
   start: PropTypes.instanceOf(moment).isRequired,
   end: PropTypes.instanceOf(moment).isRequired,
 };
 
-export default EventComponent;
+export default EventDisplay;

@@ -132,7 +132,7 @@ const ScheduleEventForm = (props) => {
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 setSubmitting(false);
-                props.handleFormClose(values, true);
+                props.handleFormSubmit(values, true);
               }, 400);
             }}
           >
@@ -176,7 +176,7 @@ const ScheduleEventForm = (props) => {
               <Button>&#9998; Create</Button>
               <CancelButton
                 onClick={() => {
-                  props.handleFormClose("", false);
+                  props.handleFormSubmit("", false);
                 }}
               >
                 &#9747; Cancel

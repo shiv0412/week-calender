@@ -22,8 +22,8 @@ const RangeDisplay = (props) => {
     <>
       <DateRangeContainer>
         <Dropdown />
-        <DateTitle>{props.startDate + props.endDate}</DateTitle>
-        <Button prevWeek={props.prevWeek} nextWeek={props.nextWeek} />
+        <DateTitle>{props.weekStartDate + props.weekEndDate}</DateTitle>
+        <Button prevWeekSelector={props.prevWeekSelector} nextWeekSelector={props.nextWeekSelector} />
       </DateRangeContainer>
     </>
   );

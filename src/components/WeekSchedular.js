@@ -5,9 +5,9 @@ import moment from "moment";
 import styled from "styled-components";
 import "react-week-calendar/src/style.css";
 /*custom imports*/
-import EventComponent from "./EventDisplay";
 import ScheduleEventForm from "./ScheduleEventForm";
 import RangeDisplay from "./RangeDisplay";
+import EventDisplay from "./EventDisplay";
 
 /*styled-components*/
 const Title = styled.h2`
@@ -29,10 +29,10 @@ const scheduledEvents = [];
 
 class WeekSchedluar extends PureComponent {
   state = {
-    startDate: moment().weekday(0),
-    endDate: moment().weekday(6),
-    firstDay: moment().weekday(0),
-    selectedIntervals: scheduledEvents,
+    weekStartDate: moment().weekday(0),
+    weekEndDate: moment().weekday(6),
+    weekFirstDay: moment().weekday(0),
+    allScheduledEvents: scheduledEvents,
     isFormOpen: false,
     eventDate: null,
     eventTitle: null,
@@ -42,22 +42,18 @@ class WeekSchedluar extends PureComponent {
 
   goToNextWeek = () => {
     this.setState({
-      firstDay: this.state.firstDay.clone().add(7, "days"),
-      startDate: this.state.startDate.clone().add(7, "days"),
-      endDate: this.state.endDate.clone().add(7, "days"),
+      weekFirstDay: this.state.weekFirstDay.clone().add(7, "days"),
+      weekStartDate: this.state.weekStartDate.clone().add(7, "days"),
+      weekEndDate: this.state.weekEndDate.clone().add(7, "days"),
     });
   };
 
   goToPrevWeek = () => {
     this.setState({
-      firstDay: this.state.firstDay.clone().subtract(7, "days"),
-      startDate: this.state.startDate.clone().subtract(7, "days"),
-      endDate: this.state.endDate.clone().subtract(7, "days"),
+      weekFirstDay: this.state.weekFirstDay.clone().subtract(7, "days"),
+      weekStartDate: this.state.weekStartDate.clone().subtract(7, "days"),
+      weekEndDate: this.state.weekEndDate.clone().subtract(7, "days"),
     });
-  };
-
-  formHandler = (moment) => {
-    this.setState({ isFormOpen: true, eventDate: moment.format("YYYY-MM-DD") });
   };
 
   checkEventConflict = (newEvent) => {
@@ -79,7 +75,7 @@ class WeekSchedluar extends PureComponent {
     }
   };
 
-  handleFormClose = (values, isSubmit) => {
+  handleFormSubmit = (values, isSubmit) => {
     if (isSubmit) {
       const todayDate = moment().format("YYYY-MM-DD");
       const selectedEventDate = values.eventDate;
@@ -125,37 +121,41 @@ class WeekSchedluar extends PureComponent {
     }
   };
 
+  handleCellClick = (moment) => {
+    this.setState({ isFormOpen: true, eventDate: moment.format("YYYY-MM-DD") });
+  };
+
   render() {
     return (
       <>
         <HeaderContainer>
           <Title>Timeline</Title>
           <RangeDisplay
-            startDate={this.state.startDate.format("DD  - ").toString()}
-            endDate={this.state.endDate.format("DD MMMM, yy").toString()}
-            prevWeek={this.goToPrevWeek}
-            nextWeek={this.goToNextWeek}
+            weekStartDate={this.state.weekStartDate.format("DD  - ").toString()}
+            weekEndDate={this.state.weekEndDate.format("DD MMMM, yy").toString()}
+            prevWeekSelector={this.goToPrevWeek}
+            nextWeekSelector={this.goToNextWeek}
           />
         </HeaderContainer>
         <WeekCalendarConatiner>
           <WeekCalendar
-            firstDay={this.state.firstDay}
+            firstDay={this.state.weekFirstDay}
             startTime={this.state.startTime}
             endTime={this.state.endTime}
             scaleUnit={60}
             eventSpacing={0}
-            selectedIntervals={this.state.selectedIntervals}
-            eventComponent={EventComponent}
+            selectedIntervals={this.state.allScheduledEvents}
+            eventComponent={EventDisplay}
             eventTitle={this.state.eventTitle}
             useModal={false}
             cellHeight={100}
-            formHandler={this.formHandler}
+            formHandler={this.handleCellClick}
           />
         </WeekCalendarConatiner>
         {this.state.isFormOpen && (
           <ScheduleEventForm
             isFormOpen={this.state.isFormOpen}
-            handleFormClose={this.handleFormClose}
+            handleFormSubmit={this.handleFormSubmit}
             eventDate={this.state.eventDate}
           />
         )}

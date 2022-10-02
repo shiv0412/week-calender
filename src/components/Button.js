@@ -28,8 +28,8 @@ const Button = (props) => {
   return (
     <>
       <ButtonContainer>
-        <WeekChangeButton onClick={props.prevWeek}>&lt;</WeekChangeButton>
-        <WeekChangeButton onClick={props.nextWeek}>&gt;</WeekChangeButton>
+        <WeekChangeButton onClick={props.prevWeekSelector}>&lt;</WeekChangeButton>
+        <WeekChangeButton onClick={props.nextWeekSelector}>&gt;</WeekChangeButton>
       </ButtonContainer>
     </>
   );
